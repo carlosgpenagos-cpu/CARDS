@@ -12,7 +12,7 @@ const poemario = {
     ],
     "carta-3": [
         "And the people who seemed calm,",
-        "have a secret in their throut,",
+        "have a secret in their throat,", 
         "and the knot revealed itself as a path."
     ],
     "carta-4": [
@@ -43,11 +43,11 @@ function actualizarPoema() {
         poemaConstruido += verso + "<br>";
     }
 
-    // Añadimos las instrucciones en inglés
+    // Añadimos las instrucciones en inglés actualizadas
     if (cartasEscaneadas.length === 3) {
          poemaConstruido += "<span class='instrucciones'>Tap to restart</span>";
     } else {
-         poemaConstruido += "<span class='instrucciones'>Scan the next card...</span>";
+         poemaConstruido += "<span class='instrucciones'>Please read the next card.</span>";
     }
 
     interfaz.innerHTML = poemaConstruido;

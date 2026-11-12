@@ -23,17 +23,19 @@
             justify-content: center;
             align-items: center;
             font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
         }
 
         .titulo-carga {
-            font-size: 16px; /* Reducido 8 puntos (antes 24px) */
+            font-size: 16px; 
             color: #000;
             font-weight: 500;
             margin-bottom: 10px;
         }
 
         .subtitulo-carga {
-            font-size: 8px; /* Reducido 8 puntos (antes 16px) */
+            font-size: 8px; 
             color: #777777;
             font-style: italic;
         }
@@ -57,8 +59,9 @@
             display: none; 
         }
 
+        /* Instrucciones: 14px (2 pts menos), gris y cursiva */
         .instrucciones {
-            font-size: 16px; 
+            font-size: 14px; 
             color: #777777; 
             font-style: italic; 
             display: block;
@@ -70,32 +73,32 @@
 <body>
     <!-- PANTALLA DE CARGA -->
     <div id="pantalla-carga">
-        <div class="titulo-carga">Loading AR Experience...</div>
-        <div class="subtitulo-carga">Please wait while the assets are downloaded.</div>
+        <div class="titulo-carga">Ask a question, and select 3 cards from the deck.</div>
+        <div class="subtitulo-carga">Read them in the order they appear.</div>
     </div>
 
     <div id="interfaz-poema"><span class="instrucciones">Looking for cards...</span></div>
 
     <a-scene embedded vr-mode-ui="enabled: false" arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
         
-        <!-- CARTA 1 -->
-        <a-nft type="nft" url="https://carlosgpenagos-cpu.github.io/CARDS/marcadores/carta1" id="carta-1">
-            <a-entity gltf-model="url(https://carlosgpenagos-cpu.github.io/CARDS/modelos/animacion1.glb)" animation-mixer="loop: repeat" scale="300 300 300" position="450 0 -150"></a-entity>
+        <!-- CARTA 1: Movida a 250 y con estabilización (smooth) reactivada -->
+        <a-nft type="nft" url="https://carlosgpenagos-cpu.github.io/CARDS/marcadores/carta1" id="carta-1" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5">
+            <a-entity gltf-model="url(https://carlosgpenagos-cpu.github.io/CARDS/modelos/animacion1.glb)" animation-mixer="loop: repeat" scale="300 300 300" position="250 0 -150"></a-entity>
         </a-nft>
 
         <!-- CARTA 2 -->
-        <a-nft type="nft" url="https://carlosgpenagos-cpu.github.io/CARDS/marcadores/carta2" id="carta-2">
-            <a-entity gltf-model="url(https://carlosgpenagos-cpu.github.io/CARDS/modelos/animacion2.glb)" animation-mixer="loop: repeat" scale="300 300 300" rotation="-90 0 0" position="450 0 -150"></a-entity>
+        <a-nft type="nft" url="https://carlosgpenagos-cpu.github.io/CARDS/marcadores/carta2" id="carta-2" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5">
+            <a-entity gltf-model="url(https://carlosgpenagos-cpu.github.io/CARDS/modelos/animacion2.glb)" animation-mixer="loop: repeat" scale="300 300 300" rotation="-90 0 0" position="250 0 -150"></a-entity>
         </a-nft>
 
         <!-- CARTA 3 -->
-        <a-nft type="nft" url="https://carlosgpenagos-cpu.github.io/CARDS/marcadores/carta3" id="carta-3">
-            <a-entity gltf-model="url(https://carlosgpenagos-cpu.github.io/CARDS/modelos/animacion3.glb)" animation-mixer="loop: repeat" scale="300 300 300" rotation="-90 0 0" position="450 0 -150"></a-entity>
+        <a-nft type="nft" url="https://carlosgpenagos-cpu.github.io/CARDS/marcadores/carta3" id="carta-3" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5">
+            <a-entity gltf-model="url(https://carlosgpenagos-cpu.github.io/CARDS/modelos/animacion3.glb)" animation-mixer="loop: repeat" scale="300 300 300" rotation="-90 0 0" position="250 0 -150"></a-entity>
         </a-nft>
 
         <!-- CARTA 4 -->
-        <a-nft type="nft" url="https://carlosgpenagos-cpu.github.io/CARDS/marcadores/carta4" id="carta-4">
-            <a-entity gltf-model="url(https://carlosgpenagos-cpu.github.io/CARDS/modelos/animacion4.glb)" animation-mixer="loop: repeat" scale="300 300 300" rotation="-90 0 0" position="450 0 -150"></a-entity>
+        <a-nft type="nft" url="https://carlosgpenagos-cpu.github.io/CARDS/marcadores/carta4" id="carta-4" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5">
+            <a-entity gltf-model="url(https://carlosgpenagos-cpu.github.io/CARDS/modelos/animacion4.glb)" animation-mixer="loop: repeat" scale="300 300 300" rotation="-90 0 0" position="250 0 -150"></a-entity>
         </a-nft>
 
         <a-entity camera></a-entity>
