@@ -35,27 +35,27 @@
 <body>
     <div id="interfaz-poema">Coloca 3 cartas sobre la mesa...</div>
 
-    <!-- Se añadió vr-mode-ui="enabled: false" para eliminar el icono de gafas abajo a la derecha -->
+    <!-- Escena sin VR y con rutas relativas activadas -->
     <a-scene embedded vr-mode-ui="enabled: false" arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
         
         <!-- CARTA 1 -->
-        <a-nft type="nft" url="marcadores/carta1" id="carta-1" class="marcador-carta" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5">
-            <a-entity gltf-model="url(modelos/animacion1.glb)" animation-mixer="loop: repeat" scale="400 400 400" position="250 0 -200"></a-entity>
+        <a-nft type="nft" url="./marcadores/carta1" id="carta-1" class="marcador-carta" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5">
+            <a-entity gltf-model="url(./modelos/animacion1.glb)" animation-mixer="loop: repeat" scale="400 400 400" position="250 0 -200"></a-entity>
         </a-nft>
 
         <!-- CARTA 2 -->
-        <a-nft type="nft" url="marcadores/carta2" id="carta-2" class="marcador-carta" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5">
-            <a-entity gltf-model="url(modelos/animacion2.glb)" animation-mixer="loop: repeat" scale="400 400 400" position="250 0 -200"></a-entity>
+        <a-nft type="nft" url="./marcadores/carta2" id="carta-2" class="marcador-carta" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5">
+            <a-entity gltf-model="url(./modelos/animacion2.glb)" animation-mixer="loop: repeat" scale="400 400 400" position="250 0 -200"></a-entity>
         </a-nft>
 
         <!-- CARTA 3 -->
-        <a-nft type="nft" url="marcadores/carta3" id="carta-3" class="marcador-carta" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5">
-            <a-entity gltf-model="url(modelos/animacion3.glb)" animation-mixer="loop: repeat" scale="400 400 400" position="250 0 -200"></a-entity>
+        <a-nft type="nft" url="./marcadores/carta3" id="carta-3" class="marcador-carta" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5">
+            <a-entity gltf-model="url(./modelos/animacion3.glb)" animation-mixer="loop: repeat" scale="400 400 400" position="250 0 -200"></a-entity>
         </a-nft>
 
         <!-- CARTA 4 -->
-        <a-nft type="nft" url="marcadores/carta4" id="carta-4" class="marcador-carta" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5">
-            <a-entity gltf-model="url(modelos/animacion4.glb)" animation-mixer="loop: repeat" scale="400 400 400" position="250 0 -200"></a-entity>
+        <a-nft type="nft" url="./marcadores/carta4" id="carta-4" class="marcador-carta" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5">
+            <a-entity gltf-model="url(./modelos/animacion4.glb)" animation-mixer="loop: repeat" scale="400 400 400" position="250 0 -200"></a-entity>
         </a-nft>
 
         <a-entity camera></a-entity>
