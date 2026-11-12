@@ -43,9 +43,9 @@ function actualizarPoema() {
         poemaConstruido += verso + "<br>";
     }
 
-    // Añadimos las instrucciones en inglés actualizadas
+    // Instrucciones dinámicas actualizadas
     if (cartasEscaneadas.length === 3) {
-         poemaConstruido += "<span class='instrucciones'>Tap to restart</span>";
+         poemaConstruido += "<span class='instrucciones'>Tap to ask a new question</span>";
     } else {
          poemaConstruido += "<span class='instrucciones'>Please read the next card.</span>";
     }
@@ -66,16 +66,17 @@ window.addEventListener("markerFound", (e) => {
     }
 });
 
-// 5. REINICIO MANUAL
+// 5. REINICIO MANUAL CON NUEVO TEXTO
 document.addEventListener('DOMContentLoaded', () => {
     let interfaz = document.getElementById('interfaz-poema');
     interfaz.addEventListener('click', () => {
         if (cartasEscaneadas.length === 3) {
             cartasEscaneadas = []; 
-            interfaz.innerHTML = "<span class='instrucciones'>Memory cleared. Scan the first card.</span>";
+            // Nuevo mensaje al limpiar la memoria
+            interfaz.innerHTML = "<span class='instrucciones'>Think about your previous answer and, if you want, ask something else.</span>";
             setTimeout(() => {
                 actualizarPoema(); 
-            }, 2000);
+            }, 3500); // Le di 3.5 segundos en lugar de 2 para que alcancen a leer el texto completo
         }
     });
 });

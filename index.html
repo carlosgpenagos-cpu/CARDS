@@ -12,7 +12,7 @@
     <style>
         body { margin: 0; overflow: hidden; }
         
-        /* DISEÑO DE LA PANTALLA DE CARGA */
+        /* DISEÑO DE LA PANTALLA DE CARGA CON IMÁGENES */
         #pantalla-carga {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -25,6 +25,21 @@
             font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
             text-align: center;
             padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .icono-esquina {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px; /* Tamaño del iconito */
+            height: auto;
+        }
+
+        .logo-centro {
+            width: 150px; /* Tamaño del logo central */
+            height: auto;
+            margin-bottom: 20px;
         }
 
         .titulo-carga {
@@ -59,7 +74,6 @@
             display: none; 
         }
 
-        /* Instrucciones: 14px (2 pts menos), gris y cursiva */
         .instrucciones {
             font-size: 14px; 
             color: #777777; 
@@ -73,6 +87,10 @@
 <body>
     <!-- PANTALLA DE CARGA -->
     <div id="pantalla-carga">
+        <!-- Reemplaza estos archivos por tus PNGs reales en GitHub -->
+        <img src="icono.png" alt="Icon" class="icono-esquina">
+        <img src="logo.png" alt="Logo" class="logo-centro">
+        
         <div class="titulo-carga">Ask a question, and select 3 cards from the deck.</div>
         <div class="subtitulo-carga">Read them in the order they appear.</div>
     </div>
@@ -81,9 +99,9 @@
 
     <a-scene embedded vr-mode-ui="enabled: false" arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
         
-        <!-- CARTA 1: Movida a 250 y con estabilización (smooth) reactivada -->
+        <!-- CARTA 1 (PEZ): Movido a la izquierda (150) y arriba (-250) -->
         <a-nft type="nft" url="https://carlosgpenagos-cpu.github.io/CARDS/marcadores/carta1" id="carta-1" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5">
-            <a-entity gltf-model="url(https://carlosgpenagos-cpu.github.io/CARDS/modelos/animacion1.glb)" animation-mixer="loop: repeat" scale="300 300 300" position="250 0 -150"></a-entity>
+            <a-entity gltf-model="url(https://carlosgpenagos-cpu.github.io/CARDS/modelos/animacion1.glb)" animation-mixer="loop: repeat" scale="300 300 300" position="150 0 -250"></a-entity>
         </a-nft>
 
         <!-- CARTA 2 -->
