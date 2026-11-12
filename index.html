@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Prototipo AR - Poemas</title>
+    <title>AR Prototype - Sequential Poems & 3D</title>
     
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.4.0/dist/aframe-extras.min.js"></script>
 
     <style>
         body { margin: 0; overflow: hidden; }
@@ -16,31 +17,54 @@
             bottom: 40px;
             left: 20px;
             right: 20px;
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: rgba(255, 255, 255, 0.6); /* 60% translúcido y sin línea negra */
             color: #000;
             padding: 20px;
             font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-            font-size: 18px;
-            line-height: 1.4;
+            font-size: 18px; 
+            line-height: 1.5;
             font-weight: 500;
-            border-left: 5px solid #000;
             z-index: 999;
             box-shadow: 0px 10px 20px rgba(0,0,0,0.15);
-            display: none; /* Oculto hasta que detecte una carta */
+            text-align: center;
+            display: none; 
+        }
+
+        /* Instrucciones: 16px, gris y cursiva */
+        .instrucciones {
+            font-size: 16px; 
+            color: #777777; 
+            font-style: italic; 
+            display: block;
+            margin-top: 12px;
         }
     </style>
 </head>
 
 <body>
-    <div id="interfaz-poema">Buscando cartas...</div>
+    <div id="interfaz-poema"><span class="instrucciones">Looking for cards...</span></div>
 
     <a-scene embedded vr-mode-ui="enabled: false" arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
         
-        <!-- CARTAS (Sin modelos 3D, solo detectores) -->
-        <a-nft detector-cartas="numero: 1" type="nft" url="marcadores/carta1" id="carta-1" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5"></a-nft>
-        <a-nft detector-cartas="numero: 2" type="nft" url="marcadores/carta2" id="carta-2" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5"></a-nft>
-        <a-nft detector-cartas="numero: 3" type="nft" url="marcadores/carta3" id="carta-3" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5"></a-nft>
-        <a-nft detector-cartas="numero: 4" type="nft" url="marcadores/carta4" id="carta-4" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5"></a-nft>
+        <!-- CARTA 1: Sin rotación (de pie), movida a la derecha (450), bajada a la mitad (-150), tamaño 300 -->
+        <a-nft type="nft" url="./marcadores/carta1" id="carta-1">
+            <a-entity gltf-model="url(./modelos/animacion1.glb)" animation-mixer="loop: repeat" scale="300 300 300" position="450 0 -150"></a-entity>
+        </a-nft>
+
+        <!-- CARTA 2: Acostada (-90 0 0), movida a la derecha, bajada a la mitad, tamaño 300 -->
+        <a-nft type="nft" url="./marcadores/carta2" id="carta-2">
+            <a-entity gltf-model="url(./modelos/animacion2.glb)" animation-mixer="loop: repeat" scale="300 300 300" rotation="-90 0 0" position="450 0 -150"></a-entity>
+        </a-nft>
+
+        <!-- CARTA 3: Acostada (-90 0 0), movida a la derecha, bajada a la mitad, tamaño 300 -->
+        <a-nft type="nft" url="./marcadores/carta3" id="carta-3">
+            <a-entity gltf-model="url(./modelos/animacion3.glb)" animation-mixer="loop: repeat" scale="300 300 300" rotation="-90 0 0" position="450 0 -150"></a-entity>
+        </a-nft>
+
+        <!-- CARTA 4: Acostada (-90 0 0), movida a la derecha, bajada a la mitad, tamaño 300 -->
+        <a-nft type="nft" url="./marcadores/carta4" id="carta-4">
+            <a-entity gltf-model="url(./modelos/animacion4.glb)" animation-mixer="loop: repeat" scale="300 300 300" rotation="-90 0 0" position="450 0 -150"></a-entity>
+        </a-nft>
 
         <a-entity camera></a-entity>
     </a-scene>
