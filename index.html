@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Prototipo AR - Cartas y Poemas</title>
+    
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.4.0/dist/aframe-extras.min.js"></script>
+
+    <style>
+        body { margin: 0; overflow: hidden; }
+        
+        #interfaz-poema {
+            position: absolute;
+            bottom: 40px;
+            left: 20px;
+            right: 20px;
+            background-color: rgba(255, 255, 255, 0.95);
+            color: #000;
+            padding: 20px;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 18px;
+            line-height: 1.4;
+            font-weight: 500;
+            border-left: 5px solid #000;
+            z-index: 999;
+            box-shadow: 0px 10px 20px rgba(0,0,0,0.15);
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="interfaz-poema">Coloca 3 cartas sobre la mesa...</div>
+
+    <a-scene embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
+        
+        <!-- CARTA 1 -->
+        <a-nft type="nft" url="marcadores/carta1" id="carta-1" class="marcador-carta" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5">
+            <a-entity gltf-model="url(modelos/animacion1.glb)" animation-mixer="loop: repeat" scale="400 400 400" position="250 0 -200"></a-entity>
+        </a-nft>
+
+        <!-- CARTA 2 -->
+        <a-nft type="nft" url="marcadores/carta2" id="carta-2" class="marcador-carta" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5">
+            <a-entity gltf-model="url(modelos/animacion2.glb)" animation-mixer="loop: repeat" scale="400 400 400" position="250 0 -200"></a-entity>
+        </a-nft>
+
+        <!-- CARTA 3 -->
+        <a-nft type="nft" url="marcadores/carta3" id="carta-3" class="marcador-carta" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5">
+            <a-entity gltf-model="url(modelos/animacion3.glb)" animation-mixer="loop: repeat" scale="400 400 400" position="250 0 -200"></a-entity>
+        </a-nft>
+
+        <!-- CARTA 4 -->
+        <a-nft type="nft" url="marcadores/carta4" id="carta-4" class="marcador-carta" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5">
+            <a-entity gltf-model="url(modelos/animacion4.glb)" animation-mixer="loop: repeat" scale="400 400 400" position="250 0 -200"></a-entity>
+        </a-nft>
+
+        <a-entity camera></a-entity>
+    </a-scene>
+
+    <script src="script.js"></script>
+</body>
+</html>
