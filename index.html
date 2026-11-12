@@ -12,12 +12,39 @@
     <style>
         body { margin: 0; overflow: hidden; }
         
+        /* DISEÑO DE LA PANTALLA DE CARGA */
+        #pantalla-carga {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #ffffff;
+            z-index: 9999; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+
+        .titulo-carga {
+            font-size: 16px; /* Reducido 8 puntos (antes 24px) */
+            color: #000;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .subtitulo-carga {
+            font-size: 8px; /* Reducido 8 puntos (antes 16px) */
+            color: #777777;
+            font-style: italic;
+        }
+
+        /* DISEÑO DEL POEMA */
         #interfaz-poema {
             position: absolute;
             bottom: 40px;
             left: 20px;
             right: 20px;
-            background-color: rgba(255, 255, 255, 0.6); /* 60% translúcido y sin línea negra */
+            background-color: rgba(255, 255, 255, 0.6); 
             color: #000;
             padding: 20px;
             font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -30,7 +57,6 @@
             display: none; 
         }
 
-        /* Instrucciones: 16px, gris y cursiva */
         .instrucciones {
             font-size: 16px; 
             color: #777777; 
@@ -42,26 +68,32 @@
 </head>
 
 <body>
+    <!-- PANTALLA DE CARGA -->
+    <div id="pantalla-carga">
+        <div class="titulo-carga">Loading AR Experience...</div>
+        <div class="subtitulo-carga">Please wait while the assets are downloaded.</div>
+    </div>
+
     <div id="interfaz-poema"><span class="instrucciones">Looking for cards...</span></div>
 
     <a-scene embedded vr-mode-ui="enabled: false" arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
         
-        <!-- CARTA 1: Sin rotación, URL absoluta hacia tu GitHub Pages -->
+        <!-- CARTA 1 -->
         <a-nft type="nft" url="https://carlosgpenagos-cpu.github.io/CARDS/marcadores/carta1" id="carta-1">
             <a-entity gltf-model="url(https://carlosgpenagos-cpu.github.io/CARDS/modelos/animacion1.glb)" animation-mixer="loop: repeat" scale="300 300 300" position="450 0 -150"></a-entity>
         </a-nft>
 
-        <!-- CARTA 2: Acostada (-90 0 0), URL absoluta -->
+        <!-- CARTA 2 -->
         <a-nft type="nft" url="https://carlosgpenagos-cpu.github.io/CARDS/marcadores/carta2" id="carta-2">
             <a-entity gltf-model="url(https://carlosgpenagos-cpu.github.io/CARDS/modelos/animacion2.glb)" animation-mixer="loop: repeat" scale="300 300 300" rotation="-90 0 0" position="450 0 -150"></a-entity>
         </a-nft>
 
-        <!-- CARTA 3: Acostada (-90 0 0), URL absoluta -->
+        <!-- CARTA 3 -->
         <a-nft type="nft" url="https://carlosgpenagos-cpu.github.io/CARDS/marcadores/carta3" id="carta-3">
             <a-entity gltf-model="url(https://carlosgpenagos-cpu.github.io/CARDS/modelos/animacion3.glb)" animation-mixer="loop: repeat" scale="300 300 300" rotation="-90 0 0" position="450 0 -150"></a-entity>
         </a-nft>
 
-        <!-- CARTA 4: Acostada (-90 0 0), URL absoluta -->
+        <!-- CARTA 4 -->
         <a-nft type="nft" url="https://carlosgpenagos-cpu.github.io/CARDS/marcadores/carta4" id="carta-4">
             <a-entity gltf-model="url(https://carlosgpenagos-cpu.github.io/CARDS/modelos/animacion4.glb)" animation-mixer="loop: repeat" scale="300 300 300" rotation="-90 0 0" position="450 0 -150"></a-entity>
         </a-nft>
@@ -70,5 +102,17 @@
     </a-scene>
 
     <script src="script.js"></script>
+
+    <!-- SCRIPT QUE OCULTA LA CARGA -->
+    <script>
+        window.addEventListener('arjs-nft-loaded', function () {
+            let loader = document.getElementById('pantalla-carga');
+            if (loader) {
+                loader.style.transition = "opacity 0.5s ease";
+                loader.style.opacity = "0";
+                setTimeout(() => { loader.style.display = 'none'; }, 500);
+            }
+        });
+    </script>
 </body>
 </html>
