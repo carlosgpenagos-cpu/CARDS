@@ -1,81 +1,34 @@
-// 1. LA MATRIZ DE POEMAS (4 Cartas x 3 Posiciones)
-const poemario = {
-    "carta-1": [
-        "What carries you,", // Posición 1 (Izquierda)
-        ", were all swimming in one direction,",          // Posición 2 (Centro)
-        "and they all paid the price."     // Posición 3 (Derecha)
-    ],
-    "carta-2": [
-        "Who don't know which voice to believe,",
-        ", could no longer agree with itself,",
-        "and could not agree on what they were seeing."
-    ],
-    "carta-3": [
-        "And the people who seemed calm,",
-        ", have a secret in their throut,",
-        "and the knot revealed itself as a path."
-    ],
-    "carta-4": [
-        "Those who are brave,",
-        ", left the familiar road behind,",
-        "and chose a direction before certainty arrived."
-    ]
+// Textos de los poemas para cada carta
+const poemas = {
+    1: "Verso de la carta 1: \nEl viento sopla sobre la memoria...",
+    2: "Verso de la carta 2: \nLas cenizas del tiempo caen lento...",
+    3: "Verso de la carta 3: \nUn eco lejano responde en el silencio...",
+    4: "Verso de la carta 4: \nY la tierra guarda lo que hemos olvidado."
 };
 
-// 2. MEMORIA TEMPORAL (Para saber qué está viendo la cámara)
-let cartasVisibles = [];
+// Componente personalizado para detectar cuándo se ve una carta
+AFRAME.registerComponent('detector-cartas', {
+    schema: {
+        numero: { type: 'number' }
+    },
+    init: function () {
+        let el = this.el;
+        let numCarta = this.data.numero;
+        let cajaTexto = document.getElementById('interfaz-poema');
 
-// 3. EL MOTOR DE ENSAMBLAJE
-function actualizarPoema() {
-    const interfaz = document.getElementById("interfaz-poema");
+        // Cuando la cámara reconoce la carta
+        el.addEventListener('markerFound', () => {
+            console.log("Carta " + numCarta + " encontrada");
+            cajaTexto.style.display = 'block';
+            // Cambia el texto según la carta detectada
+            cajaTexto.innerText = poemas[numCarta];
+        });
 
-    // Si no hay exactamente 3 cartas en la mesa, ocultamos el poema
-    if (cartasVisibles.length !== 3) {
-        interfaz.style.display = "none";
-        return;
+        // Opcional: Cuando la cámara pierde la carta
+        el.addEventListener('markerLost', () => {
+            console.log("Carta " + numCarta + " perdida");
+            // Si quieres que el texto desaparezca al quitar la carta, descomenta la siguiente línea:
+            // cajaTexto.style.display = 'none';
+        });
     }
-
-    // Si hay 3 cartas, buscamos en qué posición X (izquierda a derecha) están
-    let cartasEnMesa = cartasVisibles.map(idCarta => {
-        let elementoHTML = document.getElementById(idCarta);
-        // Obtenemos sus coordenadas en el espacio 3D
-        let posicion = elementoHTML.getAttribute("position"); 
-        
-        return {
-            id: idCarta,
-            x: posicion.x // Nos importa el eje X para saber el orden horizontal
-        };
-    });
-
-    // Ordenamos la lista de menor a mayor X (De izquierda a derecha)
-    cartasEnMesa.sort((a, b) => a.x - b.x);
-
-    // Extraemos el verso exacto según el orden de las cartas
-    let versoIzquierda = poemario[cartasEnMesa[0].id][0];
-    let versoCentro    = poemario[cartasEnMesa[1].id][1];
-    let versoDerecha   = poemario[cartasEnMesa[2].id][2];
-
-    // Armamos el poema final uniendo los tres versos
-    let poemaFinal = `${versoIzquierda} <br> ${versoCentro} <br> ${versoDerecha}`;
-
-    // Lo inyectamos en la pantalla y lo hacemos visible
-    interfaz.innerHTML = poemaFinal;
-    interfaz.style.display = "block";
-}
-
-// 4. LOS "OJOS" DEL SISTEMA (Eventos de la cámara)
-window.addEventListener("markerFound", (e) => {
-    // Cuando la cámara detecta un marcador (ej. carta-1), lo anota en la lista
-    let idCarta = e.target.id;
-    if (idCarta && !cartasVisibles.includes(idCarta)) {
-        cartasVisibles.push(idCarta);
-        actualizarPoema(); // Revisa si ya hay 3 para armar el poema
-    }
-});
-
-window.addEventListener("markerLost", (e) => {
-    // Cuando apartas una carta de la cámara, la borra de la lista
-    let idCarta = e.target.id;
-    cartasVisibles = cartasVisibles.filter(id => id !== idCarta);
-    actualizarPoema(); // Esconde el poema porque ya no hay 3 cartas
 });
